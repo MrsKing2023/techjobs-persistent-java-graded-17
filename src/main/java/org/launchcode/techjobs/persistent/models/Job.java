@@ -4,13 +4,16 @@ package org.launchcode.techjobs.persistent.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
 @Entity
 public class Job extends AbstractEntity {
 
-
+@NotBlank(message = "Name is required")
+@Size(min = 3, max = 100, message = "Name must be between 3 and 100 characters")
     private String name;
     private String employer;
     private String skills;
