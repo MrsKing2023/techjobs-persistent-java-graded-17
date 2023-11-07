@@ -11,6 +11,7 @@ public class Skill extends AbstractEntity {
         this.description = description;
     }
 
+    public Skill() {}
     public String getDescription() {
         return description;
     }
