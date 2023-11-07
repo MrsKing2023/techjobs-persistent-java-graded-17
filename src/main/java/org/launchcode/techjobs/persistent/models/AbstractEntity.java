@@ -12,6 +12,7 @@ import java.util.Objects;
 public abstract class AbstractEntity {
     @Id
     @GeneratedValue
+    @NotNull
     private int id;
 
     @NotBlank
