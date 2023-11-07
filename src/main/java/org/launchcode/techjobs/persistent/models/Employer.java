@@ -9,9 +9,16 @@ public class Employer extends AbstractEntity {
     @NotBlank
     @Size(min = 3, max = 100, message = "An employer can only have one location")
     public String location;
-    //2.2
 
     public Employer(String location) {
+        this.location = location;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
         this.location = location;
     }
 }
