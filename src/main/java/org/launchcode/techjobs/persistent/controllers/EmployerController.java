@@ -18,6 +18,13 @@ public class EmployerController {
     @Autowired
     private EmployerRepository employerRepository;
 
+    @GetMapping
+    public String displayAllEmployers(Model model) {
+        model.addAttribute("view", "All Employers");
+        model.addAttribute("employers", employerRepository.findAll());
+        return "employers/index";
+    }
+
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
