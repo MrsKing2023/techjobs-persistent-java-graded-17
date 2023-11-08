@@ -17,6 +17,7 @@ public class EmployerController {
 
     @Autowired
     private EmployerRepository employerRepository;
+
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
