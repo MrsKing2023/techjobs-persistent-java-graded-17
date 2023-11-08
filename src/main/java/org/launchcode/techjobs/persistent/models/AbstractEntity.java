@@ -5,18 +5,17 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 import java.util.Objects;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
     @Id
     @GeneratedValue
-    @NotNull
     private int id;
 
-    @NotBlank
-    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
+    @NotNull
+    @Size(min = 3, max = 50)
     private String name;
 
     public int getId() {
