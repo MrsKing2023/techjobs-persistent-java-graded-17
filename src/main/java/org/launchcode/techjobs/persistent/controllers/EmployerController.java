@@ -53,6 +53,11 @@ public class EmployerController {
             return "employers/view";
         } else {
             Optional<Employer> result = employerRepository.findById(employerId);
+            if (result.isEmpty()){
+                model.addAttribute("employer", "Invalid Employer ID" + employerId);
+            } else {
+                Employer employer = result.get();
+            }
         }
         return "redirect:../";
 
