@@ -23,12 +23,9 @@ public class HomeController {
     @Autowired
     private EmployerRepository employerRepository;
 
-
     @RequestMapping("/")
     public String index(Model model) {
-
         model.addAttribute("title", "MyJobs");
-
         return "index";
     }
 
