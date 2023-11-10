@@ -7,7 +7,8 @@ skills  VARCHAR(255)
 SELECT name,
 FROM employer,
 Where location,
-Like "St. Louis City";
+IS "St. Louis City";
+
 
 
 --Part 3
