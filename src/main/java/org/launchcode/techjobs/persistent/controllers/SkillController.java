@@ -18,7 +18,6 @@ public class SkillController {
     @Autowired
     private SkillRepository skillRepository;
 
-
     @GetMapping ("/")
     public String index(Model model) {
         model.addAttribute("view", "All Skills");
@@ -36,7 +35,7 @@ public class SkillController {
     public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill,
                                          Errors errors, Model model) {
         if (errors.hasErrors()) {
-            return "skill/add";
+            return "skills/add";
         }
         skillRepository.save(newSkill);
         return "redirect:";
