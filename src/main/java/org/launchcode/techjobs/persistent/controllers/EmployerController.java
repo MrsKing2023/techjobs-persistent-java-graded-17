@@ -57,6 +57,8 @@ public class EmployerController {
                 model.addAttribute("employer", "Invalid Employer ID" + employerId);
             } else {
                 Employer employer = result.get();
+                model.addAttribute("employer","All Employers: " + employer.getName());
+               // model.addAttribute("employers", employer.getEmployer());
             }
         }
         return "redirect:../";
