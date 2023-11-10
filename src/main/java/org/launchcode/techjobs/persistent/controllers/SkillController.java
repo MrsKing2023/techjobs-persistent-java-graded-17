@@ -18,7 +18,7 @@ public class SkillController {
     @Autowired
     private SkillRepository skillRepository;
 
-    @GetMapping ("/")
+    @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("view", "All Skills");
         model.addAttribute("skills", skillRepository.findAll());
@@ -28,7 +28,7 @@ public class SkillController {
     @GetMapping("add")
     public String displayAddSkillForm(Model model) {
         model.addAttribute(new Skill());
-        return "skill/add";
+        return "skills/add";
     }
 
     @PostMapping("add")

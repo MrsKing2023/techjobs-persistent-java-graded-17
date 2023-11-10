@@ -15,9 +15,9 @@ public class Employer extends AbstractEntity {
     @Size(min = 3, max = 100, message = "An employer can only have one location")
     public String location;
 
-    @OneToMany(mappedBy = "employer")
-    @JoinColumn(name="employer_id") //? not sure of what the value is
-    private final List<Job> jobs  = new ArrayList<>();
+   // @OneToMany(mappedBy = "employer")
+  //  @JoinColumn(name="employer_id") //? not sure of what the value is
+    //private final List<Job> jobs  = new ArrayList<>();
 
     public Employer(String location) {
         this.location = location;
@@ -33,7 +33,7 @@ public class Employer extends AbstractEntity {
         this.location = location;
     }
 
-    public List<Job> getJobs() {
-        return jobs;
-    }
+    //public List<Job> getJobs() {
+   //     return jobs;
+  //  }
 }
