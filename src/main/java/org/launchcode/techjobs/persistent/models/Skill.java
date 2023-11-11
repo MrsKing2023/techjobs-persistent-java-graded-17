@@ -3,11 +3,14 @@ package org.launchcode.techjobs.persistent.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Skill extends AbstractEntity {
 
     @ManyToMany(mappedBy="skills")
-    private Job job;
+    private List<Job> jobs = new ArrayList<>();
 
     private String description;
 
@@ -26,11 +29,7 @@ public class Skill extends AbstractEntity {
         this.description = description;
     }
 
-    public Job getJob() {
-        return job;
-    }
-
-    public void setJob(Job job) {
-        this.job = job;
+    public List<Job> getJobs() {
+        return jobs;
     }
 }

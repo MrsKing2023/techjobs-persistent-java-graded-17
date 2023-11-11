@@ -14,6 +14,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,7 @@ public class HomeController {
     @RequestMapping("/")
     public String index(Model model) {
         model.addAttribute("title", "MyJobs");
+        model.addAttribute("jobs", jobRepository.findAll());
         return "index";
     }
 
@@ -59,15 +61,26 @@ public class HomeController {
         Employer employer = employerRepository.findById(employerId).orElse(new Employer());
         newJob.setEmployer(employer);
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
-        newJob.setSkills(skillObjs.toString());
+        newJob.setSkills(skillObjs);
         jobRepository.save(newJob);
         return "redirect:";
     }
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
+        Optional optJob = Optional.empty();
+            Job job = (Job) optJob.get();
+            model.addAttribute("job", job);
+            return "jobs/view";
+    } else {
+        Optional<Job> result = jobRepository.findById(jobId);
+        if (result.isEmpty()){
+            model.addAttribute("job", "Invalid Job ID" + jobId);
+        } else {
+            Job job = result.get();
+            model.addAttribute("job", "All Jobs: " + job.getName());
 
-            return "view";
+        }
     }
 
 }
