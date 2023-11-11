@@ -81,5 +81,4 @@ public class HomeController {
             model.addAttribute("job", "All Jobs: " + job.getName());
         }
     }
-
-}
+        return "redirect:../";}
