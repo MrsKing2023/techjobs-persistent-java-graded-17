@@ -71,7 +71,9 @@ public class HomeController {
         Optional optJob = Optional.empty();
         Job job = (Job) optJob.get();
         model.addAttribute("job", job);
+
         return "jobs/view";
+
     } else {
         Optional<Job> result = jobRepository.findById(jobId);
         if (result.isEmpty()) {
@@ -81,4 +83,6 @@ public class HomeController {
             model.addAttribute("job", "All Jobs: " + job.getName());
         }
     }
-        return "redirect:../";}
+        return "redirect:../";
+}
+
