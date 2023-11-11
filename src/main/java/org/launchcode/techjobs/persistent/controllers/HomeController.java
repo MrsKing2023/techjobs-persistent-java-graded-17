@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-
 import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
@@ -26,10 +24,8 @@ public class HomeController {
 
     @Autowired
     private EmployerRepository employerRepository;
-
     @Autowired
     private SkillRepository skillRepository;
-
     @Autowired
     private JobRepository jobRepository;
 
@@ -42,7 +38,7 @@ public class HomeController {
 
     @GetMapping("add")
     public String displayAddJobForm(Model model) {
-	model.addAttribute("title", "Add Job");
+        model.addAttribute("title", "Add Job");
         model.addAttribute(new Job());
         model.addAttribute("employers", employerRepository.findAll());
         model.addAttribute("skills", skillRepository.findAll());
@@ -51,7 +47,7 @@ public class HomeController {
 
     @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
-                                       Errors errors, Model model,
+                                    Errors errors, Model model,
                                     @RequestParam int employerId,
                                     @RequestParam List<Integer> skills) {
 
@@ -68,21 +64,13 @@ public class HomeController {
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
-        Optional optJob = Optional.empty();
-        Job job = (Job) optJob.get();
-        model.addAttribute("job", job);
-
-        return "jobs/view";
-
-    } else {
-        Optional<Job> result = jobRepository.findById(jobId);
-        if (result.isEmpty()) {
-            model.addAttribute("job", "Invalid Job ID" + jobId);
+        Optional<Job> optJob = jobRepository.findById(jobId);
+        if (optJob.isPresent()) {
+            Job job = (Job) optJob.get();
+            model.addAttribute("job", job);
+            return "view";
         } else {
-            Job job = result.get();
-            model.addAttribute("job", "All Jobs: " + job.getName());
+            return "redirect:../";
         }
     }
-        return "redirect:../";
 }
-
